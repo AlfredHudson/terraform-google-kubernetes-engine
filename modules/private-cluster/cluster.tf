@@ -139,6 +139,7 @@ resource "google_container_cluster" "primary" {
 
     node_config {
       service_account = lookup(var.node_pools[0], "service_account", local.service_account)
+      machine_type    = var.default_machine_type == "" ? "e2-standard-2" : var.var.default_machine_type 
 
       dynamic "workload_metadata_config" {
         for_each = local.cluster_node_metadata_config

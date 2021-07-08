@@ -16,6 +16,11 @@
 
 // This file was automatically generated from a template in ./autogen/main
 
+variable "default_machine_type" {
+  type        = string
+  description = "default node pool machine type, necessary if confidential_nodes is enabled"
+}
+
 variable "project_id" {
   type        = string
   description = "The project ID to host the cluster in (required)"

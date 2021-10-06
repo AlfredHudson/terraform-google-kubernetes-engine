@@ -74,6 +74,7 @@ resource "google_container_cluster" "primary" {
 
   default_max_pods_per_node = var.default_max_pods_per_node
 
+  boot_disk_kms_key           = var.boot_disk_kms_key != "" ? var.boot_disk_kms_key : null  
   enable_shielded_nodes       = var.enable_shielded_nodes
   enable_binary_authorization = var.enable_binary_authorization
   dynamic "master_authorized_networks_config" {
@@ -316,7 +317,6 @@ resource "google_container_node_pool" "pools" {
       }
     }
 
-    boot_disk_kms_key = lookup(each.value, "boot_disk_kms_key", null)  
       
     shielded_instance_config {
       enable_secure_boot          = lookup(each.value, "enable_secure_boot", false)

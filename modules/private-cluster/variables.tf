@@ -397,6 +397,12 @@ variable "node_metadata" {
   type        = string
 }
 
+variable "boot_disk_kms_key" {
+  description = "The Customer Managed Encryption Key used to encrypt the boot disk attached to each node in the node pool. This should be of the form projects/[KEY_PROJECT_ID]/locations/[LOCATION]/keyRings/[RING_NAME]/cryptoKeys/[KEY_NAME]. For more information about protecting resources with Cloud KMS Keys please see: https://cloud.google.com/compute/docs/disks/customer-managed-encryption"
+  default     = ""
+  type        = string
+}
+
 variable "database_encryption" {
   description = "Application-layer Secrets Encryption settings. The object format is {state = string, key_name = string}. Valid values of state are: \"ENCRYPTED\"; \"DECRYPTED\". key_name is the name of a CloudKMS key."
   type        = list(object({ state = string, key_name = string }))
